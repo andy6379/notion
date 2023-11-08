@@ -412,19 +412,27 @@
 		);
 	}
 	var resize = function () {
+		// 清除无质量（不可移动）的对象
 		for (var i = 0, rb; rb = objects[i++];) {
 			if (!rb.invMass) {
 				i--;
 				objects.splice(i, 1);
 			}
-		}/* 代码整理：懒人之家 lanrenzhijia.com */
-		var img = document.getElementById("blade");
-		objects.push(new Rectangle(img, scr.width * 0.9, scr.height * 0.9, img.width, img.height, 0, 1, Math.PI/2)); // blade
-		objects.push(new Rectangle(img, scr.width * 0.9, scr.height * 0.9, img.width, img.height, 0, 1, 0)); // blade
-		objects.push(new Rectangle(img, scr.width * 0.1, scr.height * 0.9, img.width, img.height, 0, -1, Math.PI/2)); // blade
-		objects.push(new Rectangle(img, scr.width * 0.1, scr.height * 0.9, img.width, img.height, 0, -1, 0)); // blade
-		objects.push(new Rectangle(false, scr.width * 0.5, scr.height, scr.width * 0.7, 4, 0, 0)); // floor
+		}
+	
+		// 获取第一张图像并在右侧创建一个 Rectangle 对象
+		var imgRight = document.getElementById("blade");
+		objects.push(new Rectangle(imgRight, scr.width * 0.9, scr.height * 0.9, imgRight.width, imgRight.height, 0, 1, 0));
+	
+		// 获取第二张图像并在左侧创建一个 Rectangle 对象
+		var imgLeft = document.getElementById("blade1");
+		objects.push(new Rectangle(imgLeft, scr.width * 0.1, scr.height * 0.9, imgLeft.width, imgLeft.height, 0, 1, 0));
+	
+		// 添加地板 Rectangle 对象
+		objects.push(new Rectangle(false, scr.width * 0.5, scr.height, scr.width * 0.7, 4, 0, 0));
 	}
+	
+	
 	var drop = function () {
 		for (var i = 0; i < 10; i++) {
 			dropc++;
